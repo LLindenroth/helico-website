@@ -1,0 +1,158 @@
+:root {
+    --foreground: rgb(183, 183, 183);
+    --background_subtle: rgb(230, 230, 230);
+    --background: rgb(162, 162, 162);
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0);
+    padding-left: 50px;
+    padding-top: 50px;
+    
+  }
+  
+  /* svg {
+    height: 70px;
+    width: 70px;
+  } */
+  
+  /* svg path {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    animation: dash 3s forwards;
+  }
+   */
+  /* svg path {
+
+  } */
+  .ear {
+    fill: var(--background_subtle);
+    
+    stroke: var(--foreground);
+    stroke-opacity: 0;
+    /* stroke: white; */
+    stroke-width: 0;
+    animation: fill-in-stroke 0.5s forwards;
+    animation-delay: 3s;
+    animation-timing-function: linear;
+
+    /* stroke: #f00;
+    stroke-width: 1; */
+  }
+  .outer {
+    stroke: var(--foreground);
+    stroke-width: 10;
+    stroke-linecap: round;
+    fill: none;
+
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+
+    animation: dash_outer 3s forwards;
+    animation-timing-function: linear;
+
+
+  }
+  
+  .inner {
+    stroke: var(--background_subtle);
+    stroke-width: 8;
+    stroke-linecap: round;
+
+    fill: none;
+
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 300;
+
+    animation: dash_inner 3s forwards;
+    animation-timing-function: linear;
+
+    /* animation-direction: reverse; */
+  }
+
+  .inner_bg {
+    stroke: var(--foreground);
+    stroke-width: 7.75;
+    stroke-linecap: round;
+
+    fill: none;
+
+    /* stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+
+
+    animation: dash_inner 3s;
+    animation-direction: reverse; */
+  }  
+
+  .robot_center {
+    fill: var(--foreground);
+    fill-opacity: 0;
+
+
+    animation: fill-in 0.5s forwards;
+    animation-delay: 3s;
+    /* stroke: #f00;
+    stroke-width: 1; */
+  }
+
+  .robot {
+    fill: var(--foreground);
+    fill-opacity: 0;
+    /* stroke: white; */
+    animation: fill-in 0.5s forwards;
+    animation-delay: 3s;
+    animation-timing-function: linear;
+
+    /* stroke: #f00;
+    stroke-width: 1; */
+  }
+
+
+
+  .robot:hover {
+  fill: #37b3ba;
+}
+  .ear_canal {
+    fill: none;
+    stroke: var(--foreground);
+    stroke-opacity: 0;
+    stroke-width: 6px;
+
+    animation: fill-in-stroke 0.5s  forwards;
+    animation-delay: 3s;
+    animation-timing-function: linear;
+
+    /* stroke: #f00;
+    stroke-width: 1; */
+  }
+
+
+
+  @keyframes dash_outer {
+    to {
+      stroke-dashoffset: 500;
+    }
+  }
+  
+  @keyframes dash_inner {
+    to {
+      stroke-dashoffset: 1000;
+    }
+  }
+
+  @keyframes fill-in {
+    to {
+      fill-opacity: 1;
+    }
+  }
+  
+  @keyframes fill-in-stroke {
+    to {
+      stroke-opacity: 1;
+    }
+  }
+
+

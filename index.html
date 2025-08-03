@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+
+    <title>Helico Technologies | Coming Soon</title>
+    <link rel="icon" type="image/svg+xml" href="Helico_logo_squared.svg"/>
+    <link rel="stylesheet" href="src/styles.css"/>
+    <style>
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        overflow: hidden; /* Prevent scrolling */
+      }
+      body {
+        min-height: 100vh;
+        width: 100vw;
+        background: #f8fafc;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-family: 'Roboto', sans-serif;
+        box-sizing: border-box;
+      }
+      .logo-top-right {
+        position: absolute;
+        top: 2vw;
+        right: 2vw;
+        z-index: 20;
+        /* Adjust padding/margin as needed */
+      }
+      .logo {
+        padding: 0;
+        margin: 0;
+        width: 10vw;
+        /* min-width: 90px;
+        max-width: 220px; */
+        margin-bottom: 2.5vh;
+        filter: drop-shadow(0 2px 12px #0001);
+        transition: width 0.2s;
+
+      }
+      .svg-overlay-container {
+        position: relative;
+        width: 60vw;
+        /* min-width: 220px; */
+        max-width: 500px;
+        aspect-ratio: 1/1;
+        margin-bottom: 2vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: width 0.2s;
+      }
+      .svg-container {
+        width: 100%;
+        height: 100%;
+        display: block;
+      }
+      .svg-container svg {
+        width: 125%;
+        height: 125%;
+        opacity: 0.25;
+        padding-left: 14.65%;
+        display: block;
+      }
+      .overlay-content {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        pointer-events: none;
+        padding-top: 30%;
+      }
+      .coming-soon {
+        font-size: clamp(18px, 3vw, 31.5px);
+        color: #37b3ba;
+        letter-spacing: 0.04em;
+        margin-bottom: 1vh;
+        text-align: center;
+        text-shadow: 0 2px 12px #fff, 0 1px 2px #0002;
+        pointer-events: auto;
+        /* transition: font-size 0.2s; */
+      }
+      .subtitle {
+        font-size: clamp(24px, 4vw, 42px);
+        width: 80vw;
+        /* max-width: 800px; */
+        color: #a2a2a2;
+        text-align: center;
+        margin-bottom: 0;
+        text-shadow: 0 2px 12px #fff, 0 1px 2px #0001;
+        pointer-events: auto;
+        /* transition: font-size 0.2s; */
+      }
+      .footer {
+        width: 100vw;
+        background: #f5f5f5;
+        color: #717171;
+        font-size: clamp(14px, 2vw, 24px);
+        text-align: center;
+        padding: 1.2vh 0 1.2vh 0;
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        z-index: 10;
+        letter-spacing: 0.01em;
+        border-top: 1px solid #b3e0ef44;
+        transition: font-size 0.2s;
+      }
+      .highlight {
+        color: #37b3ba;
+        /* font-weight: thin; */
+      }
+      @media (max-width: 600px) {
+        .logo {
+          width: 32vw;
+        }
+
+      }
+    </style>
+  </head>
+  <body>
+    <div class="logo-top-right">
+      <img src="Helico_logo.svg" alt="Helico Logo" class="logo" />
+    </div>
+    <div class="svg-overlay-container">
+      <div class="svg-container">
+        <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+          <g>
+            <path id="ear" class="ear" d="M115.517,388.194C103.324,387.105 88.906,381.934 78.599,374.953C71.13,369.894 62.541,360.654 57.824,352.606C55.83,349.202 52.847,342.025 51.602,337.633C50.506,333.766 50.484,333.079 50.179,293.141C49.839,248.57 49.979,250.557 46.682,243.475C43.516,236.672 39.473,231.806 31.183,224.823C12.312,208.927 3.745,193.016 0.56,167.945C-0.301,161.172 -0.137,139.642 0.83,132.389C6.336,91.083 29.302,53.241 63.936,28.409C71.987,22.636 75.54,20.503 84.718,15.93C110.661,3.003 139.246,-2.342 164.844,0.947C194.229,4.722 220.395,15.875 243.968,34.672C246.034,36.32 250.992,40.952 254.986,44.966C278.142,68.242 293.15,97.07 298.022,127.631C299.964,139.816 300.504,153.299 299.518,165.038C296.938,195.759 285.515,225.577 263.105,260.089C255.751,271.414 242.751,289.187 230.504,304.659C205.46,336.299 197.652,345.637 185.98,357.913C177.446,366.888 172.21,371.519 166.096,375.501C152.498,384.357 131.517,389.622 115.517,388.194Z" style="fill-rule:nonzero;"/>
+            <path id="outer" class="outer" d="M33.14,187.762C14.98,131.477 38.966,69.562 90.21,40.454C141.453,11.345 206.583,22.638 245.167,67.321C283.752,112.005 285.725,178.421 249.86,225.339"/>
+            <path id="inner_bg" class="inner_bg" d="M149.643,159.715L149.643,215.284C149.643,224.115 142.398,231.392 133.567,231.431L111.627,231.53C99.637,231.583 89.801,241.463 89.801,253.454L89.801,253.978C89.801,266.032 99.612,276.372 111.601,275.223C172.639,269.371 234.589,228.644 243.238,164.972C250.366,110.094 205.715,50.328 147.646,54.123C101.739,54.121 58.463,93.068 60.058,140.304C59.373,152.347 60.691,164.548 64.358,176.059"/>
+            <path id="inner" class="inner" d="M149.643,159.715L149.643,215.284C149.643,224.115 142.398,231.392 133.567,231.431L111.627,231.53C99.637,231.583 89.801,241.463 89.801,253.454L89.801,253.978C89.801,266.032 99.612,276.372 111.601,275.223C172.639,269.371 234.589,228.644 243.238,164.972C250.366,110.094 205.715,50.328 147.646,54.123C101.739,54.121 58.463,93.068 60.058,140.304C59.373,152.347 60.691,164.548 64.358,176.059"/>
+            <path id="robot" class="robot" d="M149.462,116.082C139.914,116.083 132.058,121.711 132.058,128.55C132.061,130.953 133.034,133.304 134.859,135.32C127.149,140.295 122.435,148.826 122.329,158.001C119.613,157.352 117.023,157.643 114.884,158.836C108.961,162.256 108.015,171.874 112.789,180.142C112.789,180.142 112.789,180.143 112.789,180.143C117.563,188.411 126.365,192.401 132.289,188.982C132.289,188.981 132.289,188.981 132.29,188.981C134.536,187.653 136.15,185.371 136.903,182.458C137.844,182.933 138.812,183.354 139.801,183.718L139.801,174.131C134.283,170.722 130.905,164.688 130.885,158.201C130.886,147.892 139.369,139.409 149.678,139.408C159.988,139.408 168.472,147.891 168.473,158.201C168.47,164.658 165.141,170.678 159.672,174.111L159.672,183.767C161.059,183.235 162.4,182.591 163.682,181.841C164.483,184.482 166.019,186.553 168.101,187.799C174.025,191.218 182.826,187.228 187.6,178.96C192.374,170.691 191.428,161.074 185.505,157.653C183.08,156.258 180.068,156.041 176.956,157.039C176.536,148.077 171.736,139.871 164.129,135.113C165.879,133.152 166.827,130.878 166.866,128.55C166.865,121.71 159.009,116.082 149.462,116.082L149.462,116.082Z"/>
+            <circle id="robot_center" class="robot_center" cx="149.679px" cy="158.202px" r="10px"/>
+            <circle id="ear_canal" class="ear_canal" cx="149.737" cy="158.672" r="51.074"/>
+          </g>
+        </svg>
+      </div>
+      <div class="overlay-content">
+        <div class="subtitle">Pioneering precision treatment delivery to the inner ear through <span class="highlight">soft robotics</span> and <span class="highlight">AI</span>.</div>
+        <div class="coming-soon">- Coming soon -</div>
+      </div>
+
+
+
+
+</html>  </body>    <script src="src/index.js"></script>    </div>    <footer class="footer">
+    &copy; 2025 Helico Technologies. All rights reserved.
+    </footer>    
+  </body>
+
+</html>
