@@ -2,6 +2,7 @@
     --foreground: rgb(183, 183, 183);
     --background_subtle: rgb(230, 230, 230);
     --background: rgb(162, 162, 162);
+    --highlight_color: rgb(57, 179, 186);
 }
 
 body {
@@ -12,35 +13,53 @@ body {
     padding-top: 50px;
     
   }
-  
-  /* svg {
-    height: 70px;
-    width: 70px;
-  } */
-  
-  /* svg path {
-    stroke-dasharray: 1000;
-    stroke-dashoffset: 1000;
-    animation: dash 3s forwards;
-  }
-   */
-  /* svg path {
 
-  } */
   .ear {
+    padding-left: 50px;
+    padding-top: 50px;
+
     fill: var(--background_subtle);
     
     stroke: var(--foreground);
     stroke-opacity: 0;
-    /* stroke: white; */
-    stroke-width: 0;
+
+    stroke-width: 5px;
+
     animation: fill-in-stroke 0.5s forwards;
     animation-delay: 3s;
     animation-timing-function: linear;
 
-    /* stroke: #f00;
-    stroke-width: 1; */
   }
+
+.svg-container {
+    animation: to-visible 2s forwards;
+    animation-delay: 0s;
+    animation-timing-function: linear;
+  }
+
+
+  .highlight {
+    animation: to-highlight 0.5s forwards;
+    animation-delay: 5s;
+    animation-timing-function: linear;
+  }
+
+  .subtitle {
+    animation: to-visible 0.5s forwards;
+    animation-delay: 4s;
+    animation-timing-function: linear;
+
+  }
+
+  .coming-soon {
+    animation: to-visible 0.5s forwards;
+    animation-delay: 6s;
+    animation-timing-function: linear;
+
+    stroke-width: 0;
+  }
+
+
   .outer {
     stroke: var(--foreground);
     stroke-width: 10;
@@ -69,7 +88,6 @@ body {
     animation: dash_inner 3s forwards;
     animation-timing-function: linear;
 
-    /* animation-direction: reverse; */
   }
 
   .inner_bg {
@@ -78,36 +96,23 @@ body {
     stroke-linecap: round;
 
     fill: none;
-
-    /* stroke-dasharray: 1000;
-    stroke-dashoffset: 1000;
-
-
-    animation: dash_inner 3s;
-    animation-direction: reverse; */
   }  
 
   .robot_center {
     fill: var(--foreground);
     fill-opacity: 0;
 
-
     animation: fill-in 0.5s forwards;
     animation-delay: 3s;
-    /* stroke: #f00;
-    stroke-width: 1; */
   }
 
   .robot {
     fill: var(--foreground);
     fill-opacity: 0;
-    /* stroke: white; */
     animation: fill-in 0.5s forwards;
     animation-delay: 3s;
     animation-timing-function: linear;
 
-    /* stroke: #f00;
-    stroke-width: 1; */
   }
 
 
@@ -155,4 +160,12 @@ body {
     }
   }
 
+  @keyframes to-highlight {
+    to { 
+      color: var(--highlight_color); 
+    }
+}
 
+  @keyframes to-visible {
+    to { opacity: 1; }
+}

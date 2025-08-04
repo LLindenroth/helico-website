@@ -60,11 +60,12 @@
         width: 100%;
         height: 100%;
         display: block;
+        opacity: 0;
       }
       .svg-container svg {
         width: 125%;
         height: 125%;
-        opacity: 0.25;
+        opacity: 0.5;
         padding-left: 14.65%;
         display: block;
       }
@@ -79,23 +80,28 @@
         align-items: center;
         justify-content: center;
         pointer-events: none;
-        padding-top: 30%;
+        padding-top: 35%;
       }
       .coming-soon {
-        font-size: clamp(18px, 3vw, 31.5px);
+        font-size: clamp(18px, 3.5vw, 42px);
+
         color: #37b3ba;
         letter-spacing: 0.04em;
         margin-bottom: 1vh;
         text-align: center;
         text-shadow: 0 2px 12px #fff, 0 1px 2px #0002;
         pointer-events: auto;
+        opacity: 0;
         /* transition: font-size 0.2s; */
       }
       .subtitle {
-        font-size: clamp(24px, 4vw, 42px);
-        width: 80vw;
+        font-size: clamp(28px, 4.5vw, 52px);
+        width: 60vw;
+        opacity: 0;
         /* max-width: 800px; */
-        color: #a2a2a2;
+        /* color: #a2a2a2; */
+        color: rgb(110, 110, 110);
+
         text-align: center;
         margin-bottom: 0;
         text-shadow: 0 2px 12px #fff, 0 1px 2px #0001;
@@ -105,8 +111,8 @@
       .footer {
         width: 100vw;
         background: #f5f5f5;
-        color: #717171;
-        font-size: clamp(14px, 2vw, 24px);
+        color: rgb(110, 110, 110);
+        font-size: clamp(14px, 1.5vw, 24px);
         text-align: center;
         padding: 1.2vh 0 1.2vh 0;
         position: fixed;
@@ -118,7 +124,7 @@
         transition: font-size 0.2s;
       }
       .highlight {
-        color: #37b3ba;
+        color: rgb(110, 110, 110);
         /* font-weight: thin; */
       }
       @media (max-width: 600px) {
@@ -135,7 +141,7 @@
     </div>
     <div class="svg-overlay-container">
       <div class="svg-container">
-        <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+        <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" overflow="visible" style="overflow: visible;">
           <g>
             <path id="ear" class="ear" d="M115.517,388.194C103.324,387.105 88.906,381.934 78.599,374.953C71.13,369.894 62.541,360.654 57.824,352.606C55.83,349.202 52.847,342.025 51.602,337.633C50.506,333.766 50.484,333.079 50.179,293.141C49.839,248.57 49.979,250.557 46.682,243.475C43.516,236.672 39.473,231.806 31.183,224.823C12.312,208.927 3.745,193.016 0.56,167.945C-0.301,161.172 -0.137,139.642 0.83,132.389C6.336,91.083 29.302,53.241 63.936,28.409C71.987,22.636 75.54,20.503 84.718,15.93C110.661,3.003 139.246,-2.342 164.844,0.947C194.229,4.722 220.395,15.875 243.968,34.672C246.034,36.32 250.992,40.952 254.986,44.966C278.142,68.242 293.15,97.07 298.022,127.631C299.964,139.816 300.504,153.299 299.518,165.038C296.938,195.759 285.515,225.577 263.105,260.089C255.751,271.414 242.751,289.187 230.504,304.659C205.46,336.299 197.652,345.637 185.98,357.913C177.446,366.888 172.21,371.519 166.096,375.501C152.498,384.357 131.517,389.622 115.517,388.194Z" style="fill-rule:nonzero;"/>
             <path id="outer" class="outer" d="M33.14,187.762C14.98,131.477 38.966,69.562 90.21,40.454C141.453,11.345 206.583,22.638 245.167,67.321C283.752,112.005 285.725,178.421 249.86,225.339"/>
@@ -148,7 +154,7 @@
         </svg>
       </div>
       <div class="overlay-content">
-        <div class="subtitle">Pioneering precision treatment delivery to the inner ear through <span class="highlight">soft robotics</span> and <span class="highlight">AI</span>.</div>
+        <div class="subtitle">Pioneering precision treatment delivery to the inner ear through <span class="highlight">Soft Robotics</span> and <span class="highlight">AI</span>.</div>
         <div class="coming-soon">- Coming soon -</div>
       </div>
 
