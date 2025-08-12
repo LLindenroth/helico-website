@@ -1,171 +1,209 @@
 :root {
-    --foreground: rgb(183, 183, 183);
-    --background_subtle: rgb(230, 230, 230);
-    --background: rgb(162, 162, 162);
-    --highlight_color: rgb(57, 179, 186);
+  --foreground: rgb(183, 183, 183);
+  --background_subtle: rgb(230, 230, 230);
+  --background: rgb(162, 162, 162);
+  --highlight_color: rgb(57, 179, 186);
 }
 
 body {
-    display: flex;
-    justify-content: center;
-    background-color: rgba(255, 255, 255, 0);
-    padding-left: 50px;
-    padding-top: 50px;
-    
-  }
+  display: flex;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0);
+  padding-left: 50px;
+  padding-top: 50px;
+}
 
-  .ear {
-    padding-left: 50px;
-    padding-top: 50px;
-
-    fill: var(--background_subtle);
-    
-    stroke: var(--foreground);
-    stroke-opacity: 0;
-
-    stroke-width: 5px;
-
-    animation: fill-in-stroke 0.5s forwards;
-    animation-delay: 3s;
-    animation-timing-function: linear;
-
-  }
+.ear {
+  padding-left: 50px;
+  padding-top: 50px;
+  fill: var(--background_subtle);
+  stroke: var(--foreground);
+  stroke-opacity: 0;
+  stroke-width: 5px;
+  animation: fill-in-stroke 0.5s forwards;
+  animation-delay: 3s;
+  animation-timing-function: linear;
+}
 
 .svg-container {
-    animation: to-visible 2s forwards;
-    animation-delay: 0s;
-    animation-timing-function: linear;
-  }
+  animation: to-visible 2s forwards, fade-out-svg 0.7s forwards;
+  animation-delay: 0s, 6.5s;
+  animation-timing-function: linear;
+  z-index: 10;
+  background: transparent;
+}
 
+.highlight {
+  animation: to-highlight 0.5s forwards;
+  animation-delay: 5s;
+  animation-timing-function: linear;
+}
 
-  .highlight {
-    animation: to-highlight 0.5s forwards;
-    animation-delay: 5s;
-    animation-timing-function: linear;
-  }
+.subtitle {
+  animation: to-visible 0.5s forwards;
+  animation-delay: 4s;
+  animation-timing-function: linear;
+}
 
-  .subtitle {
-    animation: to-visible 0.5s forwards;
-    animation-delay: 4s;
-    animation-timing-function: linear;
+.coming-soon {
+  animation: to-visible 0.5s forwards;
+  animation-delay: 6s;
+  animation-timing-function: linear;
+  stroke-width: 0;
+}
 
-  }
+.outer {
+  stroke: var(--foreground);
+  stroke-width: 10;
+  stroke-linecap: round;
+  fill: none;
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: dash_outer 3s forwards;
+  animation-timing-function: linear;
+}
 
-  .coming-soon {
-    animation: to-visible 0.5s forwards;
-    animation-delay: 6s;
-    animation-timing-function: linear;
+.inner {
+  stroke: var(--background_subtle);
+  stroke-width: 8;
+  stroke-linecap: round;
+  fill: none;
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 300;
+  animation: dash_inner 3s forwards;
+  animation-timing-function: linear;
+}
 
-    stroke-width: 0;
-  }
+.inner_bg {
+  stroke: var(--foreground);
+  stroke-width: 7.75;
+  stroke-linecap: round;
+  fill: none;
+}
 
+.robot_center {
+  fill: var(--foreground);
+  fill-opacity: 0;
+  animation: fill-in 0.5s forwards;
+  animation-delay: 3s;
+}
 
-  .outer {
-    stroke: var(--foreground);
-    stroke-width: 10;
-    stroke-linecap: round;
-    fill: none;
+.robot {
+  fill: var(--foreground);
+  fill-opacity: 0;
+  animation: fill-in 0.5s forwards;
+  animation-delay: 3s;
+  animation-timing-function: linear;
+}
 
-    stroke-dasharray: 1000;
-    stroke-dashoffset: 1000;
-
-    animation: dash_outer 3s forwards;
-    animation-timing-function: linear;
-
-
-  }
-  
-  .inner {
-    stroke: var(--background_subtle);
-    stroke-width: 8;
-    stroke-linecap: round;
-
-    fill: none;
-
-    stroke-dasharray: 1000;
-    stroke-dashoffset: 300;
-
-    animation: dash_inner 3s forwards;
-    animation-timing-function: linear;
-
-  }
-
-  .inner_bg {
-    stroke: var(--foreground);
-    stroke-width: 7.75;
-    stroke-linecap: round;
-
-    fill: none;
-  }  
-
-  .robot_center {
-    fill: var(--foreground);
-    fill-opacity: 0;
-
-    animation: fill-in 0.5s forwards;
-    animation-delay: 3s;
-  }
-
-  .robot {
-    fill: var(--foreground);
-    fill-opacity: 0;
-    animation: fill-in 0.5s forwards;
-    animation-delay: 3s;
-    animation-timing-function: linear;
-
-  }
-
-
-
-  .robot:hover {
+.robot:hover {
   fill: #37b3ba;
 }
-  .ear_canal {
-    fill: none;
-    stroke: var(--foreground);
-    stroke-opacity: 0;
-    stroke-width: 6px;
 
-    animation: fill-in-stroke 0.5s  forwards;
-    animation-delay: 3s;
-    animation-timing-function: linear;
-
-    /* stroke: #f00;
-    stroke-width: 1; */
-  }
-
-
-
-  @keyframes dash_outer {
-    to {
-      stroke-dashoffset: 500;
-    }
-  }
-  
-  @keyframes dash_inner {
-    to {
-      stroke-dashoffset: 1000;
-    }
-  }
-
-  @keyframes fill-in {
-    to {
-      fill-opacity: 1;
-    }
-  }
-  
-  @keyframes fill-in-stroke {
-    to {
-      stroke-opacity: 1;
-    }
-  }
-
-  @keyframes to-highlight {
-    to { 
-      color: var(--highlight_color); 
-    }
+.ear_canal {
+  fill: none;
+  stroke: var(--foreground);
+  stroke-opacity: 0;
+  stroke-width: 6px;
+  animation: fill-in-stroke 0.5s forwards;
+  animation-delay: 3s;
+  animation-timing-function: linear;
 }
 
-  @keyframes to-visible {
+@keyframes dash_outer {
+  to {
+    stroke-dashoffset: 500;
+  }
+}
+
+@keyframes dash_inner {
+  to {
+    stroke-dashoffset: 1000;
+  }
+}
+
+@keyframes fill-in {
+  to {
+    fill-opacity: 1;
+  }
+}
+
+@keyframes fill-in-stroke {
+  to {
+    stroke-opacity: 1;
+  }
+}
+
+@keyframes to-highlight {
+  to {
+    color: var(--highlight_color);
+  }
+}
+
+@keyframes to-visible {
+  to {
+    opacity: 1;
+  }
+}
+
+.svg-overlay-container {
+  position: relative;
+}
+
+.overlay-content {
+  z-index: 20;
+  position: absolute;
+  pointer-events: none;
+}
+
+.inflated-logo {
+  position: absolute;
+  scale: 1.5;
+  top: -10vh;
+  left: 45vw;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  max-height: 60%;
+  object-fit: contain;
+  z-index: 1000;
+  opacity: 0;
+  pointer-events: auto;
+  animation: fade-in-inflated-logo 1s forwards;
+  animation-delay: 6.75s;
+  transform: translateX(-45vw);
+}
+
+@keyframes fade-in-inflated-logo {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-out-svg {
+  to {
+    opacity: 0;
+  }
+}
+
+
+.inflated-logo {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    object-fit: contain;
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: auto;
+    animation: fade-in-inflated-logo 0.7s forwards;
+    animation-delay: 6.5s;
+    /* Center and offset: */
+}
+
+@keyframes fade-in-inflated-logo {
     to { opacity: 1; }
+}
+
+@keyframes fade-out-svg {
+    to { opacity: 0; }
 }
