@@ -7,6 +7,28 @@
     <title>Helico Technologies | Coming Soon</title>
     <link rel="icon" type="image/svg+xml" href="Helico_logo_squared.svg" />
     <link rel="stylesheet" href="src/styles.css" />
+    <script>
+    // early synchronous device detection: sets window.__helico_isMobile and root data-device
+    (function () {
+      function detectSync() {
+        var isMobile = false;
+        if (navigator.userAgentData && typeof navigator.userAgentData.mobile === 'boolean') {
+          isMobile = navigator.userAgentData.mobile;
+        } else {
+          isMobile = /Mobi|Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(navigator.userAgent);
+        }
+        // heuristic: coarse pointer + narrow width -> mobile
+        try {
+          if (window.matchMedia && window.matchMedia('(pointer: coarse) and (max-width: 768px)').matches) {
+            isMobile = true;
+          }
+        } catch (e) {}
+        window.__helico_isMobile = isMobile;
+        try { document.documentElement.setAttribute('data-device', isMobile ? 'mobile' : 'desktop'); } catch(e){}
+      }
+      detectSync();
+    })();
+    </script>
     <style>
       html,
       body {
@@ -23,7 +45,7 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        font-family: 'Roboto', sans-serif;
+        font-family: 'Segoe UI';
         box-sizing: border-box;
       }
       .logo-top-right {
@@ -51,6 +73,16 @@
         align-items: center;
         transition: width 0.2s;
       }
+
+.inflated-video {
+  position: absolute;
+  inset: 0;                 /* top:0; right:0; bottom:0; left:0 */
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;        /* crop to fill container */
+  z-index: 0;
+  pointer-events: none;
+}
       .svg-container {
         width: 100%;
         height: 100%;
@@ -78,14 +110,20 @@
         padding-top: 35%;
       }
       .coming-soon {
-        font-size: clamp(14px, 3vw, 36px);
-        color: #37b3ba;
+        /* moved to bottom-right, white and visible */
+        position: fixed;
+        right: 4vw;
+        bottom: 8vh;
+        font-size: clamp(14px, 6vw, 100px);
+        color: #ffffff;
         letter-spacing: 0.04em;
-        margin-bottom: 1vh;
-        text-align: center;
-        text-shadow: 0 2px 12px #fff, 0 1px 2px #0002;
+        margin: 0;
+        text-align: right;
+        text-shadow: 0 2px 10px rgba(0,0,0,0.6), 0 1px 2px rgba(255,255,255,0.03);
         pointer-events: auto;
-        opacity: 0;
+        opacity: 1;
+        z-index: 15; /* above the footer (which is z-index:10) */
+        background: transparent;
       }
       .subtitle {
         font-size: clamp(20px, 3vw, 42px);
@@ -131,17 +169,23 @@
       }
       .show-inflated-logo {
         display: block;
-        opacity: 1;
+        opacity: 0;
       }
     </style>
   </head>
   <body>
     <div class="logo-top-right">
-      <img src="Helico_logo.svg" alt="Helico Logo" class="logo" />
+      <img src="Helico_logo_white.svg" alt="Helico Logo" class="logo" />
     </div>
+      <!-- remove static <source>; script will inject correct source based on detection -->
+      <video id="bg-video" class="inflated-video" autoplay muted loop playsinline preload="auto" data-desktop="src/video/Helico_render.mp4" data-mobile="src/video/Helico_render_mobile.mp4">
+        <!-- source injected at runtime -->
+        <!-- fallback text -->
+        Your browser does not support the video tag.
+      </video>    
     <div class="svg-overlay-container" id="svg-overlay-container">
-      <img id="inflated-logo" src="src/Inflated.png" alt="Inflated Device" class="inflated-logo" />
-      <div class="svg-container" id="svg-logo-container">
+      <!-- <img id="inflated-logo" src="src/Inflated.png" alt="Inflated Device" class="inflated-logo" /> -->
+      <!-- <div class="svg-container" id="svg-logo-container">
         <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" overflow="visible" style="overflow: visible;">
           <g>
             <path
@@ -174,19 +218,67 @@
             <circle id="ear_canal" class="ear_canal" cx="149.737" cy="158.672" r="51.074" />
           </g>
         </svg>
-      </div>
-      <div class="overlay-content">
+      </div> -->
+      <!-- <div class="overlay-content">
         <div class="subtitle">
           Pioneering precision treatment delivery to the inner ear through
           <span class="highlight">Soft Robotics</span> and
           <span class="highlight">AI</span>.
         </div>
         <div class="coming-soon">- Coming soon -</div>
-      </div>
+      </div> -->
+    <div class="coming-soon">Coming soon</div>
+
     </div>
     <footer class="footer">
-      &copy; 2025 Helico Technologies. All rights reserved.
+      &copy; 2025 Helico Technologies Ltd. All rights reserved.
     </footer>
+
+    <!-- device-detection script: sets body data-device and injects correct video source early on DOMContentLoaded -->
+    <script>
+    (function () {
+      function detectDeviceFallback() {
+        var isMobile = false;
+        if (navigator.userAgentData && typeof navigator.userAgentData.mobile === 'boolean') {
+          isMobile = navigator.userAgentData.mobile;
+        } else {
+          isMobile = /Mobi|Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(navigator.userAgent);
+        }
+        try {
+          if (window.matchMedia && window.matchMedia('(pointer: coarse) and (max-width: 768px)').matches) {
+            isMobile = true;
+          }
+        } catch (e) {}
+        return isMobile;
+      }
+
+      function selectAndLoadVideo() {
+        var video = document.getElementById('bg-video');
+        if (!video) return;
+        var isMobile = (typeof window.__helico_isMobile === 'boolean') ? window.__helico_isMobile : detectDeviceFallback();
+        var src = isMobile ? (video.getAttribute('data-mobile') || 'src/video/Helico_render_mobile.mp4') : (video.getAttribute('data-desktop') || 'src/video/Helico_render.mp4');
+        // remove any existing sources and inject chosen source
+        while (video.firstChild) video.removeChild(video.firstChild);
+        var source = document.createElement('source');
+        source.src = src;
+        source.type = 'video/mp4';
+        video.appendChild(source);
+        try { video.load(); } catch (e) {}
+        // mark device on body for styling/logic use
+        try { document.body.setAttribute('data-device', isMobile ? 'mobile' : 'desktop'); } catch(e){}
+        console.log('Helico: selected video ->', src);
+        // expose small helper
+        window.detectDevice = function () { return isMobile ? 'mobile' : 'desktop'; };
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', selectAndLoadVideo);
+      } else {
+        selectAndLoadVideo();
+      }
+    })();
+    </script>
+
     <script src="src/index.js"></script>
   </body>
 </html>
