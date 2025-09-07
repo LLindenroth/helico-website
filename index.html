@@ -40,7 +40,7 @@
       body {
         min-height: 100vh;
         width: 100vw;
-        background: #f8fafc;
+        background: #39bac1;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -75,12 +75,17 @@
       }
 
 .inflated-video {
-  position: absolute;
-  inset: 0;                 /* top:0; right:0; bottom:0; left:0 */
+  /* Make the video act as a centered background that scales with viewport width */
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  /* scale responsively with viewport width, but keep sensible min/max sizes */
   width: 100vw;
-  height: 100vh;
-  object-fit: cover;        /* crop to fill container */
-  z-index: 0;
+  height: auto;
+  max-height: 100vh;
+  object-fit: cover;   /* crop to fill the video box while preserving aspect ratio */
+  z-index: 0;          /* behind UI elements (logo, text) which have higher z-index */
   pointer-events: none;
 }
       .svg-container {
@@ -157,6 +162,11 @@
         .logo {
           width: 32vw;
         }
+        /* increase container width proportionally on small screens so video scales down smoothly */
+        .svg-overlay-container {
+          width: 80vw;
+          max-width: none;
+        }
       }
       .inflated-logo {
         display: block;
@@ -177,12 +187,13 @@
     <div class="logo-top-right">
       <img src="Helico_logo_white.svg" alt="Helico Logo" class="logo" />
     </div>
-      <!-- remove static <source>; script will inject correct source based on detection -->
-      <video id="bg-video" class="inflated-video" autoplay muted loop playsinline preload="auto" data-desktop="src/video/Helico_render.mp4" data-mobile="src/video/Helico_render_mobile.mp4">
-        <!-- source injected at runtime -->
-        <!-- fallback text -->
-        Your browser does not support the video tag.
-      </video>    
+
+    <!-- video restored to page background (not inside svg container) -->
+    <video id="bg-video" class="inflated-video" autoplay muted loop playsinline preload="auto" data-desktop="src/video/Helico_render.mp4" data-mobile="src/video/Helico_render_mobile.mp4">
+      <!-- source injected at runtime -->
+      Your browser does not support the video tag.
+    </video>
+
     <div class="svg-overlay-container" id="svg-overlay-container">
       <!-- <img id="inflated-logo" src="src/Inflated.png" alt="Inflated Device" class="inflated-logo" /> -->
       <!-- <div class="svg-container" id="svg-logo-container">
