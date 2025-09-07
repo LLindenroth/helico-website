@@ -75,18 +75,57 @@
       }
 
 .inflated-video {
-  /* Make the video act as a centered background that scales with viewport width */
+  /* centered fixed background */
   position: fixed;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  /* scale responsively with viewport width, but keep sensible min/max sizes */
+  z-index: 0;
+  pointer-events: none;
+
+  /* prefer scaling by width by default (good for portrait / narrow viewports) */
   width: 100vw;
   height: auto;
   max-height: 100vh;
-  object-fit: cover;   /* crop to fill the video box while preserving aspect ratio */
-  z-index: 0;          /* behind UI elements (logo, text) which have higher z-index */
-  pointer-events: none;
+
+  /* preserve aspect, crop as needed */
+  object-fit: cover;
+
+  /* vertical bias exposed via variable so it can be adjusted by media queries */
+  --video-pos: 15%;
+  object-position: 50% var(--video-pos);
+}
+
+/* when viewport is wider than typical 16:9, scale by height instead for less horizontal zoom */
+@media (min-aspect-ratio: 16/9) {
+  .inflated-video {
+    width: auto;
+    height: 100vh;
+    max-width: 100vw;
+    --video-pos: 25%;
+    object-position: 50% var(--video-pos);
+  }
+}
+
+/* for ultra-wide viewports increase upward bias (less bottom area visible) */
+@media (min-aspect-ratio: 21/9) {
+  .inflated-video {
+    width: auto;
+    height: 100vh;
+    --video-pos: 6%;
+    object-position: 50% var(--video-pos);
+  }
+}
+
+/* for very tall/narrow viewports bias slightly less upward (keeps center more visible) */
+@media (max-aspect-ratio: 3/4) {
+  .inflated-video {
+    /* keep width-based scaling */
+    width: 100vw;
+    height: auto;
+    --video-pos: 20%;
+    object-position: 50% var(--video-pos);
+  }
 }
       .svg-container {
         width: 100%;
@@ -142,11 +181,11 @@
       }
       .footer {
         width: 100vw;
-        background: #f5f5f5;
+        background: #ffffff;
         color: rgb(110, 110, 110);
-        font-size: clamp(14px, 1.5vw, 24px);
+        font-size: clamp(8px, 0.8vw, 12px);
         text-align: center;
-        padding: 1.2vh 0 1.2vh 0;
+        padding: 0.3vh 0 0.3vh 0;
         position: fixed;
         left: 0;
         bottom: 0;
@@ -238,7 +277,7 @@
         </div>
         <div class="coming-soon">- Coming soon -</div>
       </div> -->
-    <div class="coming-soon">Coming soon</div>
+    <!-- <div class="coming-soon">Coming soon</div> -->
 
     </div>
     <footer class="footer">
